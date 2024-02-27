@@ -137,8 +137,7 @@ class CoinPricesTable(DatetimeTable):
         if coin.upper() == self.base_currency:
             return 1.0
 
-        raw_data = self.get_values_on(date_time)
-        if raw_data:
+        if raw_data := self.get_values_on(date_time):
             return raw_data[coin.upper()]
 
         return None

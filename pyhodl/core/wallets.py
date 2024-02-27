@@ -72,8 +72,7 @@ class Wallet:
             Balance up to date with last transaction
         """
 
-        subtotals = self.get_balance_by_transaction()
-        if subtotals:
+        if subtotals := self.get_balance_by_transaction():
             total = subtotals[-1][VALUE_KEY]  # amount of coins
 
             if now:  # convert to currency now
@@ -134,8 +133,7 @@ class Wallet:
         self._sort_transactions()
         data = []
         for transaction in self.transactions:
-            delta = transaction.get_amount(self.base_currency)
-            if delta != 0.0:  # balance has actually changed
+            if (delta := transaction.get_amount(self.base_currency)) != 0.0:  # balance has actually changed
                 data.append({
                     "transaction": transaction,
                     VALUE_KEY: delta
@@ -215,8 +213,7 @@ class Wallet:
         filled = []
 
         for date in all_dates:
-            i = bisect(dates, date)
-            if i == 0:
+            if (i := bisect(dates, date)) == 0:
                 filled.append({
                     DATE_TIME_KEY: date,
                     VALUE_KEY: 0.0

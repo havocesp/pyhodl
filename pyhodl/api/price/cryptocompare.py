@@ -144,9 +144,8 @@ class CryptocompareClient(PricesApiClient, TorApiClient):
 
         now = datetime.now()
         real_time_interval = SECONDS_IN_MIN * 5  # 5 minutes
-        real_time = abs(get_delta_seconds(now, date_time)) < real_time_interval
 
-        if real_time:
+        if real_time := abs(get_delta_seconds(now, date_time)) < real_time_interval:
             url = self.base_url + "price"
             params = {
                 "fsym": str(kwargs["currency"]),

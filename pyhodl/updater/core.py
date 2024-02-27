@@ -182,8 +182,7 @@ def build_updater(api_client, data_folder):
         Concrete updater
     """
 
-    updater = get_updater(api_client)
-    if updater:
+    if updater := get_updater(api_client):
         return updater(api_client, data_folder)
 
     raise ValueError("Cannot infer type of API client")

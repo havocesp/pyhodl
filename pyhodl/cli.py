@@ -178,8 +178,7 @@ def download_market_cap(since, until, where_to, verbose):
         print("Getting market cap since", since, "until", until)
 
     output_file = os.path.join(where_to, "market_cap.json")
-    data = get_market_cap(since, until)
-    if data:
+    if data := get_market_cap(since, until):
         write_dicts_to_json(data, output_file)
 
     if verbose:
@@ -212,8 +211,7 @@ def download_prices(coins, since, until, where_to, verbose, currency="USD",
 
     output_file = os.path.join(where_to, currency.lower() + ".json")
     dates = list(generate_dates(since, until, 24))
-    data = get_price_on_dates(coins, currency, dates, tor)
-    if data:
+    if data := get_price_on_dates(coins, currency, dates, tor):
         write_dicts_to_json(data, output_file)
 
     if verbose:

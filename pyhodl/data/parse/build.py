@@ -29,9 +29,8 @@ def build_parser(input_file):
             if raw_lst:
                 raw_data = raw_lst
 
-    parser = get_parser(raw_data)
 
-    if parser:
+    if parser := get_parser(raw_data):
         return parser(input_file)
     raise ValueError("Cannot identify parser for file", input_file)
 

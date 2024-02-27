@@ -36,8 +36,7 @@ class CryptoPlotter:
             New dataset generated (with knn) values of new dataset
         """
 
-        is_dates = isinstance(x_data[0], datetime)
-        if is_dates:
+        if is_dates := isinstance(x_data[0], datetime):
             x_data = dates_to_floats(x_data)
 
         n_neighbors = 11
@@ -67,8 +66,7 @@ class CryptoPlotter:
             New dataset generated and smoothed values of new dataset
         """
 
-        is_dates = isinstance(x_data[0], datetime)
-        if is_dates:
+        if is_dates := isinstance(x_data[0], datetime):
             x_data = dates_to_floats(x_data)
 
         x_data, y_val = remove_same_coordinates(x_data, y_val)
@@ -131,10 +129,9 @@ class CryptoPlotter:
         """
 
         coin = coin.upper()
-        candidate = [
+        if candidate := [
             wallet for wallet in self.wallets if wallet.base_currency == coin
-        ]
-        if candidate:
+        ]:
             return candidate[0]
 
         raise ValueError("Cannot find wallet with coin", coin)
