@@ -97,10 +97,8 @@ class Portfolio:
         if isinstance(balances, dict):
             return Portfolio.sum_total_balance(balances.values())
 
-        return sum([
-            balance[VALUE_KEY] for balance in balances
-            if isinstance(balance, dict) and not is_nan(balance[VALUE_KEY])
-        ])
+        return sum(balance[VALUE_KEY] for balance in balances
+            if isinstance(balance, dict) and not is_nan(balance[VALUE_KEY]))
 
     def get_crypto_fiat_balance(self, currency):
         """
@@ -145,10 +143,8 @@ class Portfolio:
         delta, delta_percentage, last_total = None, None, None
 
         if last:
-            last_total_balance = sum([
-                float(coin[VALUE_KEY])
-                for symbol, coin in last.items() if symbol != DATE_TIME_KEY
-            ])
+            last_total_balance = sum(float(coin[VALUE_KEY])
+                for symbol, coin in last.items() if symbol != DATE_TIME_KEY)
             delta = get_relative_delta(total_value, last_total_balance)
             delta_percentage = get_relative_percentage(
                 total_value,
