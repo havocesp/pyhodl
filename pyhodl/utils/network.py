@@ -6,11 +6,10 @@
 
 import functools
 import time
-
-import requests
 from hal.internet.web import get_tor_session, renew_connection
 
 from .misc import callable_to_str
+from security import safe_requests
 
 
 def handle_rate_limits(func, time_wait=60, max_attempts=2):
@@ -112,7 +111,7 @@ def download(url):
         Response of request
     """
 
-    return requests.get(url)
+    return safe_requests.get(url)
 
 
 def download_with_tor(url, tor_password, max_attempts):
