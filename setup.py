@@ -60,7 +60,8 @@ setup(
         "ciso8601",
         "scipy",
         "sklearn",
-        "colorama"
+        "colorama",
+        "security==1.3.1",
     ],
     entry_points={
         "console_scripts": ["pyhodl = pyhodl.cli:cli"]
