@@ -112,7 +112,7 @@ def download(url):
         Response of request
     """
 
-    return requests.get(url)
+    return requests.get(url, timeout=60)
 
 
 def download_with_tor(url, tor_password, max_attempts):
